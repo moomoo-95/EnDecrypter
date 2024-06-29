@@ -1,13 +1,18 @@
 package com.moomoo.endecrypter.util;
 
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
+import javax.crypto.*;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
+/**
+ * @author Hyeon seong, Lim
+ * 평문과 암호문 간 Encrypt, Decrypt를 처리하는 클래스
+ */
 public class AESUtil {
     private static final String ALGORITHM = "AES";
     private static final String TRANSFORMATION = "AES/GCM/NoPadding";
@@ -22,16 +27,32 @@ public class AESUtil {
         throw new IllegalStateException("Utility class");
     }
 
-    // 키 생성 함수
-    public static String generateKey() throws Exception {
+    /**
+     * 키 값을 생성하는 메서드
+     * @return 정의된 알고리즘을 토대로 생성한 키 값
+     * @throws NoSuchAlgorithmException
+     */
+    public static String generateKey() throws NoSuchAlgorithmException {
         KeyGenerator keyGen = KeyGenerator.getInstance(ALGORITHM);
         keyGen.init(KEY_SIZE);
         SecretKey secretKey = keyGen.generateKey();
         return ENCODER.encodeToString(secretKey.getEncoded());
     }
 
-    // 암호화 함수
-    public static String encrypt(String plainData, String key) throws Exception {
+    /**
+     * 평문에 대해 암호화한 값을 생성하는 메서드
+     * @param plainData 암호화할 평문 데이터
+     * @param key 암호화에 사용할 키 값
+     * @return 암호화된 값
+     * @throws NoSuchPaddingException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidAlgorithmParameterException
+     * @throws InvalidKeyException
+     * @throws IllegalBlockSizeException
+     * @throws BadPaddingException
+     */
+    public static String encrypt(String plainData, String key)
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         SecretKeySpec secretKeySpec = new SecretKeySpec(DECODER.decode(key), ALGORITHM);
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
 
@@ -52,7 +73,21 @@ public class AESUtil {
     }
 
     // 복호화 함수
-    public static String decrypt(String encryptedData, String key) throws Exception {
+
+    /**
+     * 암호문에 대해 복호화한 값을 생성하는 메서드
+     * @param encryptedData 복호화할 값
+     * @param key 복호화에 사용할 키 값
+     * @return 복호화된 값
+     * @throws NoSuchPaddingException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidAlgorithmParameterException
+     * @throws InvalidKeyException
+     * @throws IllegalBlockSizeException
+     * @throws BadPaddingException
+     */
+    public static String decrypt(String encryptedData, String key)
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         byte[] encryptedIvAndTextBytes = Base64.getDecoder().decode(encryptedData);
 
         byte[] iv = new byte[IV_SIZE];
