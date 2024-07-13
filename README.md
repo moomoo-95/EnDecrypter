@@ -1,6 +1,6 @@
 # EnDecrypter
 
-##encrypt/decrypt generator
+## encrypt/decrypt generator
 
 ## Options
 ### help
