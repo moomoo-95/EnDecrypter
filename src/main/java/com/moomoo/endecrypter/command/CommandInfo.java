@@ -10,6 +10,7 @@ public class CommandInfo {
     private String input;
     private String inputType;
     private String output;
+    private String key;
     public CommandInfo(CommandLine cmd) {
         loadServiceOptions(cmd);
     }
@@ -19,5 +20,6 @@ public class CommandInfo {
         this.input = cmd.getOptionValue("i");
         this.inputType = cmd.getOptionValue("it", "text");
         this.output = cmd.getOptionValue("o", "");
+        this.key = cmd.getOptionValue("k");
     }
 }

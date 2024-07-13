@@ -3,10 +3,8 @@ package com.moomoo.endecrypter.util;
 import javax.crypto.*;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
 import java.util.Base64;
 
 /**
@@ -37,6 +35,17 @@ public class AESUtil {
         keyGen.init(KEY_SIZE);
         SecretKey secretKey = keyGen.generateKey();
         return ENCODER.encodeToString(secretKey.getEncoded());
+    }
+
+    /**
+     * 키 값을 생성하는 메서드
+     * @return 텍스트를 기반 생성한 키 값
+     * @throws NoSuchAlgorithmException
+     */
+    public static String customKey(String input) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] keyBytes = digest.digest(input.getBytes(StandardCharsets.UTF_8));
+        return ENCODER.encodeToString(keyBytes);
     }
 
     /**

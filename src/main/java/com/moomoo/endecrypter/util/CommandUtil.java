@@ -37,9 +37,10 @@ public class CommandUtil {
         // Service
         opts.addOption(new Option("h", "display help text"));
         opts.addOption(Option.builder("m").argName("mode").hasArg().desc("The Convert Mode. [encrypt(default) | decrypt]").build());
-        opts.addOption(Option.builder("i").argName("input").hasArg().desc("Input data. [text | file name]").required().build());
+        opts.addOption(Option.builder("i").argName("input").hasArg().desc("Input data. [text | file]").required().build());
         opts.addOption(Option.builder("it").argName("input type").hasArg().desc("Input data type. [text(default) | file]").build());
         opts.addOption(Option.builder("o").argName("output").hasArg().desc("Output data file name. Output to log if not set.").build());
+        opts.addOption(Option.builder("k").argName("key").hasArg().desc("Key value to use for en/decryption.").required().build());
 
         return opts;
     }
