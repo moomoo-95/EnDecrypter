@@ -1,6 +1,6 @@
 package com.moomoo.endecrypt;
 
-import com.moomoo.endecrypter.ServiceRunner;
+import com.moomoo.endecrypter.service.ServiceRunner;
 import com.moomoo.endecrypter.info.ResultInfo;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;

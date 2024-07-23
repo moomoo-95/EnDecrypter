@@ -3,6 +3,10 @@ package com.moomoo.endecrypter.command;
 import lombok.Getter;
 import org.apache.commons.cli.CommandLine;
 
+/**
+ * @author Hyeon seong, Lim
+ * command로 받은 옵션을 저장하는 객체
+ */
 @Getter
 public class CommandInfo {
     // Required

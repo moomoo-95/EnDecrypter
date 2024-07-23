@@ -4,6 +4,10 @@ import com.moomoo.endecrypter.command.CommandInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.cli.*;
 
+/**
+ * @author Hyeon seong, Lim
+ * command 옵션을 처리하는 유틸 클래스
+ */
 @Slf4j
 public class CommandUtil {
     private static Options opts;

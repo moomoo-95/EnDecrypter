@@ -2,6 +2,10 @@ package com.moomoo.endecrypter.info;
 
 import lombok.Data;
 
+/**
+ * @author Hyeon seong, Lim
+ * 실행 결과 정보를 담은 객체
+ */
 @Data
 public class ResultInfo {
     private final String input;

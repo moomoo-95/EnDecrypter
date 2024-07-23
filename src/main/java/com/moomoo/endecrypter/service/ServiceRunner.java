@@ -1,4 +1,4 @@
-package com.moomoo.endecrypter;
+package com.moomoo.endecrypter.service;
 
 import com.moomoo.endecrypter.command.CommandInfo;
 import com.moomoo.endecrypter.info.ResultInfo;
@@ -13,6 +13,10 @@ import java.nio.file.StandardOpenOption;
 
 import static com.moomoo.endecrypter.util.AESUtil.*;
 
+/**
+ * @author Hyeon seong, Lim
+ * 서비스를 실행시키는 클래스
+ */
 @Slf4j
 public class ServiceRunner {
     public ResultInfo run(String[] args){
